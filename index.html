@@ -12,7 +12,9 @@
   </br>
   <p>SDK response:</p>
   <pre id="sdk-response"></pre>
-
+  <p>SDK response code:</p>
+  <pre id="sdk-response-code"></pre>
+  
   <script>
     window.addEventListener('message', (event) => {
       if (event.origin !== "https://www.facebook.com" && event.origin !== "https://web.facebook.com") {
@@ -50,6 +52,7 @@
         // perform a server-to-server call from there to our servers for an access token.
       }
       document.getElementById("sdk-response").textContent = JSON.stringify(response, null, 2);
+      document.getElementById("sdk-response-code").textContent = code;
     }
 
     const launchWhatsAppSignup = () => {

@@ -45,7 +45,7 @@
   </script>
 
   <script>
-    const REDIRECT_URI = "https://bot254test.onrender.com";
+    const REDIRECT_URI = "https://api.bot254.com/api/whatsapp/callback";
     const fbLoginCallback = (response) => {
       if (response.authResponse) {
         const code = response.authResponse.code;
@@ -58,6 +58,8 @@
 
     const launchWhatsAppSignup = () => {
       // Launch Facebook login
+      console.log("🔵 FB.login redirect_uri:", REDIRECT_URI);
+      console.log(REDIRECT_URI);
       FB.login(fbLoginCallback, {
         config_id: '1603936874284292', // configuration ID goes here
         response_type: 'code', // must be set to 'code' for System User access token

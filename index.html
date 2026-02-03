@@ -45,6 +45,7 @@
   </script>
 
   <script>
+    const REDIRECT_URI = "https://bot254test.onrender.com/";
     const fbLoginCallback = (response) => {
       if (response.authResponse) {
         const code = response.authResponse.code;
@@ -61,6 +62,7 @@
         config_id: '1603936874284292', // configuration ID goes here
         response_type: 'code', // must be set to 'code' for System User access token
         override_default_response_type: true, // when true, any response types passed in the "response_type" will take precedence over the default types
+        redirect_uri: REDIRECT_URI,
         extras: {"version":"v3"}
       });
     }

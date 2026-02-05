@@ -87,7 +87,11 @@
   return response;
 }
 </script>
-
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const storedUserId = params.get("user_id");
+  console.log("Stored user id ", storedUserId);
+</script>
 
   <script>
     window.fbAsyncInit = function() {

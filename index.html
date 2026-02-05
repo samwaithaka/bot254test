@@ -25,6 +25,9 @@
           if (data.event === 'FINISH') {
             const {phone_number_id, waba_id} = data.data;
             sessionStorage.setItem("phone_number_id", phone_number_id);
+            const backendEndpoint = "https://api.bot254.com/api/whatsapp/callback/auth-response";
+            const res = postData(backendEndpoint, data);
+            console.log("res ", res);
             console.log("Phone number ID ", phone_number_id, " WhatsApp business account ID ", waba_id);
             // if user cancels the Embedded Signup flow
           } else if (data.event === 'CANCEL') {
@@ -47,11 +50,12 @@
     const REDIRECT_URI = "https://api.bot254.com/api/whatsapp/callback";
     const fbLoginCallback = (response) => {
       if (response.authResponse) {
-        const backendEndpoint = 
+        const backendEndpoint = "https://api.bot254.com/api/whatsapp/callback/auth-response";
         const code = response.authResponse.code;
         const user_id = sessionStorage.getItem("phone_number_id");
         response.authResponse.userID = user_id;
-        postData(endpoint, response) {
+        const res = postData(backendEndpoint, response);
+        console.log("res ", res);
         // The returned code must be transmitted to your backend first and then
         // perform a server-to-server call from there to our servers for an access token.
       }
@@ -70,16 +74,20 @@
         extras: {"version":"v3"}
       });
     }
-
-    async function postData(const endpoint, const requestData) {
-    const response = await fetch(endpoint, {
+  </script>
+  <script>
+  async function postData(endpoint, requestData) {
+  const response = await fetch(endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(requestData)
   });
-  </script>
+  return response;
+}
+</script>
+
 
   <script>
     window.fbAsyncInit = function() {

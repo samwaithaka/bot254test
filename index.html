@@ -25,7 +25,7 @@
           if (data.event === 'FINISH') {
             const {phone_number_id, waba_id} = data.data;
             sessionStorage.setItem("phone_number_id", phone_number_id);
-            const backendEndpoint = "https://api.bot254.com/api/whatsapp/callback/auth-response";
+            const backendEndpoint = "https://api.bot254.com/api/whatsapp/callback/session-response";
             const res = await postData(backendEndpoint, data);
             console.log("res ", res);
             console.log("Phone number ID ", phone_number_id, " WhatsApp business account ID ", waba_id);

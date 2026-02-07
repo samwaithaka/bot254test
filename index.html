@@ -25,7 +25,7 @@
           if (data.event === 'FINISH') {
             const {phone_number_id, waba_id} = data.data;
             sessionStorage.setItem("phone_number_id", phone_number_id);
-            const backendEndpoint = "https://api.bot254.com/api/whatsapp/callback/session-response";
+            const backendEndpoint = "https://api.bot254.com/api/waba/callback/session-response";
             const res = postData(backendEndpoint, data);
             //console.log("res ", res);
             //console.log("Phone number ID ", phone_number_id, " WhatsApp business account ID ", waba_id);
@@ -47,10 +47,10 @@
   </script>
 
   <script>
-    const REDIRECT_URI = "https://api.bot254.com/api/whatsapp/callback";
+    const REDIRECT_URI = "https://api.bot254.com/api/waba/callback";
     const fbLoginCallback = (response) => {
       if (response.authResponse) {
-        const backendEndpoint = "https://api.bot254.com/api/whatsapp/callback/auth-response";
+        const backendEndpoint = "https://api.bot254.com/api/waba/callback/auth-response";
         const code = response.authResponse.code;
         const phone_number_id = sessionStorage.getItem("phone_number_id");
         const params = new URLSearchParams(window.location.search);
@@ -67,9 +67,6 @@
     }
 
     const launchWhatsAppSignup = () => {
-      // Launch Facebook login
-      console.log("🔵 FB.login redirect_uri:", REDIRECT_URI);
-      console.log(REDIRECT_URI);
       FB.login(fbLoginCallback, {
         config_id: '1603936874284292', // configuration ID goes here
         response_type: 'code', // must be set to 'code' for System User access token
